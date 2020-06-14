@@ -3,7 +3,7 @@
   <entry>
     <title>（三）搭建自己的v2ray</title>
     <url>/2020/06/12/da-jian-zi-ji-de-v2ray/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/css/APlayer.min.css"><script src="/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/js/Meting.min.js"></script><hr>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        总体说来，用这些插件或者免费的服务，不如用自己的更安心。不过搭建自己的v2ray需要投入一些成本和时间。对于普通朋友来说，如果你只想简单的科学上网，那么最好的方式就是购买别人搭建好的vpn（特别提醒，一定要选择大的平台，我之前使用过的“零点云”个人感觉还不错，一年不到100元）一般而言这些大平台的稳定性和速度都会比自己搭建的更加好，价格也会比自己搭建更便宜。</p>
 <p>​        对于那些爱折腾或者想了解一下过程的朋友就可以继续往下看了。</p>
 <p>​        主要的流程是：1）购买vps服务器</p>
@@ -38,7 +38,7 @@
   <entry>
     <title>（二）利用谷歌上网助手科学上网</title>
     <url>/2020/06/12/gu-ge-shang-wang-zhu-shou/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/css/APlayer.min.css"><script src="/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/js/Meting.min.js"></script><hr>
 <h3 id="利用谷歌上网助手科学上网"><a href="#利用谷歌上网助手科学上网" class="headerlink" title="利用谷歌上网助手科学上网"></a>利用谷歌上网助手科学上网</h3><p>​        在了解了背景知识后，终于来到了正题如何最简单的上外网呢？今天我只讲一下最简单的通过谷歌助手插件上网。之后我也会更新其他科学上网方式。</p>
 <h4 id="第一步，下载谷歌浏览器。"><a href="#第一步，下载谷歌浏览器。" class="headerlink" title="第一步，下载谷歌浏览器。"></a>第一步，下载谷歌浏览器。</h4><p>​        在<a href="https://www.google.cn/chrome/" target="_blank" rel="noopener">官网下载</a>谷歌浏览器，打开超链接，点击网站中间的“下载Chrome”。下载后，根据提示安装即可。</p>
 <h4 id="第二步，安装谷歌上网助手"><a href="#第二步，安装谷歌上网助手" class="headerlink" title="第二步，安装谷歌上网助手"></a>第二步，安装谷歌上网助手</h4><p>​        在没有翻墙的情况下，谷歌浏览器并不能上外网，它只是一个普通的浏览器，但是我们可以通过谷歌浏览器的插件，实现简单的上外网。谷歌上网助手就可以帮助我们使用谷歌搜索，访问谷歌应用商店等功能。</p>
@@ -64,7 +64,7 @@
   <entry>
     <title>（一）科学上网介绍</title>
     <url>/2020/04/30/ke-xue-shang-wang-jie-shao/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/css/APlayer.min.css"><script src="/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/js/Meting.min.js"></script><hr>
 <h3 id="历史背景"><a href="#历史背景" class="headerlink" title="历史背景"></a>历史背景</h3><p>​        众所周知谷歌是一个优秀的学习工具，在谷歌可以查到许多的博客和英文的文献，特别是对于学习计算机相关方面的学生来说，谷歌更是不可或缺的。但是由于GFW ( 防火长城 ) 的存在，在中国大陆，自2010年起就不能访问外网了，谷歌也被列入外网行列。</p>
 <p>​        而到目前为止，Google的所有产品在中国大陆境内均无法正常访问。提到翻墙（也就是我们常听到的“科学上网”或者“爱国上网”），有几个词很常见，即vpn、vps、Proxy和shadowsocks。刚接触翻墙的时候很容易被这个词的意思混淆。我们就在尽可能忽略那些晦涩难懂的技术细节，简单地讨论下翻墙原理。（<a href="[https://zh.wikipedia.org/wiki/%E8%B0%B7%E6%AD%8C%E9%80%80%E5%87%BA%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E4%BA%8B%E4%BB%B6](https://zh.wikipedia.org/wiki/谷歌退出中国大陆事件)">谷歌退出中国大陆详情</a>）  </p>
 <h3 id="翻墙原理"><a href="#翻墙原理" class="headerlink" title="翻墙原理"></a>翻墙原理</h3><p>​        在讨论vpn、Proxy这些之前，我觉得有必要先提一下目前主流翻墙手段的实现原理。</p>
