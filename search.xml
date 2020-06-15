@@ -27,6 +27,10 @@
 <p><img src="/images/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84v2ray/%E5%BB%BA%E7%AB%8B%E7%95%8C%E9%9D%A23.png" alt="建立界面3"></p>
 <p>最后勾选”Enable IPv6 Enable“和“Enable Private Networking ”，然后再给它取个名字，我的给我的服务器取名叫“mars”。最后点击“Deploy Now”就开始部署了，只需要耐心等待3/5分钟，服务器显示绿色的“running”就完成啦。</p>
 <h3 id="搭建v2ray"><a href="#搭建v2ray" class="headerlink" title="搭建v2ray"></a>搭建v2ray</h3><p>​        部署玩服务器后进入服务器的管理页面，我们就可以用自带的连接页面进入命令行了。不过在此之前我们需要做的事情是确认我们能够与服务器之间建立连接：只需要打开我们电脑的终端输入“ping （你自己服务器对应的ip地址）”</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ping 127.0.0.1</span><br><span class="line"></span><br><span class="line">PING 127.0.0.1 (127.0.0.1): 56 data bytes</span><br><span class="line"></span><br><span class="line">64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.058 ms</span><br><span class="line"></span><br><span class="line">64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.103 ms</span><br><span class="line"></span><br><span class="line">64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.108 ms</span><br></pre></td></tr></table></figure>
+
+
+
 ]]></content>
       <categories>
         <category>科学上网</category>
