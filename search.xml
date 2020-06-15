@@ -26,11 +26,57 @@
 <p>系统选择“Ubuntu20”，然后选择5美元一个月（它下面有写是按照小时扣费的，约0.007美元一小时。第一个月有100美元可以奢侈一把）</p>
 <p><img src="/images/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84v2ray/%E5%BB%BA%E7%AB%8B%E7%95%8C%E9%9D%A23.png" alt="建立界面3"></p>
 <p>最后勾选”Enable IPv6 Enable“和“Enable Private Networking ”，然后再给它取个名字，我的给我的服务器取名叫“mars”。最后点击“Deploy Now”就开始部署了，只需要耐心等待3/5分钟，服务器显示绿色的“running”就完成啦。</p>
-<h3 id="搭建v2ray"><a href="#搭建v2ray" class="headerlink" title="搭建v2ray"></a>搭建v2ray</h3><p>​        部署玩服务器后进入服务器的管理页面，我们就可以用自带的连接页面进入命令行了。不过在此之前我们需要做的事情是确认我们能够与服务器之间建立连接：只需要打开我们电脑的终端输入“ping （你自己服务器对应的ip地址）”</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ping 127.0.0.1</span><br><span class="line"></span><br><span class="line">PING 127.0.0.1 (127.0.0.1): 56 data bytes</span><br><span class="line"></span><br><span class="line">64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.058 ms</span><br><span class="line"></span><br><span class="line">64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.103 ms</span><br><span class="line"></span><br><span class="line">64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.108 ms</span><br></pre></td></tr></table></figure>
+<h3 id="搭建v2ray"><a href="#搭建v2ray" class="headerlink" title="搭建v2ray"></a>搭建v2ray</h3><p>​        部署玩服务器后进入服务器的管理页面，我们就可以用自带的连接页面进入命令行了。不过在此之前我们需要做的事情是确认我们能够与服务器之间建立连接。</p>
+<p>![/images/搭建自己的v2ray/管理界面1.png)</p>
+<p>只需要打开我们电脑的终端输入（这里的66.42.92.162需要换成你自己的ip地址）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ping 66.42.92.162</span><br></pre></td></tr></table></figure>
 
+<p>正常情况下你将看到如下的结果，说明你可以和你的vps建立联系。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">64 bytes from 66.42.92.162: icmp_seq=0 ttl=45 time=358.799 ms</span><br><span class="line">64 bytes from 66.42.92.162: icmp_seq=1 ttl=45 time=378.370 ms</span><br><span class="line">64 bytes from 66.42.92.162: icmp_seq=2 ttl=46 time=405.829 ms</span><br></pre></td></tr></table></figure>
 
+<p>但如果一直都显示</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Request timeout for icmp_seq 0</span><br><span class="line">Request timeout for icmp_seq 1</span><br><span class="line">Request timeout for icmp_seq 2</span><br></pre></td></tr></table></figure>
 
+<p>那就是你这个主机的ip被GFW墙了，这个时候你就只能点击右上角的彻底删除，并重复步骤一（你也可以先重开一台vps再删除，这样你可以确保第二次不会拿到和第一次一样的ip）。</p>
+<p>如果可以链接成功，那我们我们就可以使用<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">xshel</a>（windows）或<a href="http://www.hostbuf.com/downloads/finalshell_install.pkg" target="_blank" rel="noopener">finalshell</a>（mac）与vps进行ssh链接了。（这两个软件相比右上角自带的命令控制台最大的好处就是可以复制粘贴，当然还有其他的很多功能）</p>
+<p>下载安装后我们进入finalshell的页面，并建立一个与vps的ssh连接。<br><img src="/images/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84v2ray/%E9%93%BE%E6%8E%A5vps.png" alt="链接vps"></p>
+<p>之后双击新建的mars主机与其连接，第一次连接时会让你接受密钥，选择接受并保存。<br><img src="/images/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84v2ray/%E6%8E%A5%E5%8F%97%E5%AF%86%E9%92%A5.png" alt="接受密钥"></p>
+<p>首先查看内核版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+
+<p>这个是我的内核版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Linux mars 5.4.0-31-generic #35-Ubuntu SMP Thu May 7 20:20:34 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+
+<p>在我们开始搭建v2ray之前我们首先要安装BBR Plus。这个是用来加速的，vultr的主机基本都已经安装了BBR，但BBR Plus效果更好一些。我们使用一键安装脚本来安装。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O tcp.sh https://github.com/cx9208/Linux-NetSpeed/raw/master/tcp.sh &amp;&amp; chmod +x tcp.sh &amp;&amp; ./tcp.sh</span><br></pre></td></tr></table></figure>
+
+<p>会显示如下页面</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> TCP加速 一键安装管理脚本 [v1.3.1]</span><br><span class="line">  -- 就是爱生活 | 94ish.me --</span><br><span class="line">  </span><br><span class="line"> 0. 升级脚本</span><br><span class="line">————————————内核管理————————————</span><br><span class="line"> 1. 安装 BBR/BBR魔改版内核</span><br><span class="line"> 2. 安装 BBRplus版内核 </span><br><span class="line"> 3. 安装 Lotserver(锐速)内核</span><br><span class="line">————————————加速管理————————————</span><br><span class="line"> 4. 使用BBR加速</span><br><span class="line"> 5. 使用BBR魔改版加速</span><br><span class="line"> 6. 使用暴力BBR魔改版加速(不支持部分系统)</span><br><span class="line"> 7. 使用BBRplus版加速</span><br><span class="line"> 8. 使用Lotserver(锐速)加速</span><br><span class="line">————————————杂项管理————————————</span><br><span class="line"> 9. 卸载全部加速</span><br><span class="line"> 10. 系统配置优化</span><br><span class="line"> 11. 退出脚本</span><br><span class="line">————————————————————————————————</span><br><span class="line"></span><br><span class="line"> 当前状态: 已安装 BBR 加速内核 , BBR启动成功</span><br><span class="line"></span><br><span class="line"> 请输入数字 [0-11]:</span><br></pre></td></tr></table></figure>
+
+<p>我们选择2，之后它会进行安装，并跳出如下界面，我们需要选择no</p>
+<p>![/images/搭建自己的v2ray/BBR_Plus.png)</p>
+<p>之后我们要重启，会与vps断开连接。我们可以等30秒后再次与vps连接（随便按一下就会重新连接）。</p>
+<p>我们继续打开脚本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./tcp.sh</span><br></pre></td></tr></table></figure>
+
+<p>选择7，我们的BBR Plus就安装好了。</p>
+<p>接下来我们安装v2ray，同样的有一键安装脚本：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -s -L https://git.io/v2ray.sh)</span><br></pre></td></tr></table></figure>
+
+<p>输入1进行安装，并选择一系列参数</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 默认的只要回车就可以，一般来说只需要选择一个自己喜欢的端口（不要小于3000），</span></span><br><span class="line"> V2Ray 传输协议 = TCP</span><br><span class="line"></span><br><span class="line"> V2Ray 端口 = 9999</span><br><span class="line"></span><br><span class="line"> 是否配置 Shadowsocks = 未配置</span><br></pre></td></tr></table></figure>
+
+<p>之后一路回车，完成配置。输入：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">v2ray url</span><br></pre></td></tr></table></figure>
+
+<p>生成 vmess URL 链接</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">---------- V2Ray vmess URL / V2RayNG v0.4.1+ / V2RayN v2.1+ / 仅适合部分客户端 -------------</span><br><span class="line"></span><br><span class="line">vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV82Ni40Mi45Mi4xNjIiLAoiYWRkIjogIjY2LjQyLjkyLjE2MiIsCiJwb3J0IjogIjk5OTkiLAoiaWQiOiAiNmFjOTU1MmMtZmFlNy00MTUwLWJjMzAtMTYzYTQzMzU1NDQzIiwKImFpZCI6ICIyMzMiLAoibmV0IjogInRjcCIsCiJ0eXBlIjogIm5vbmUiLAoiaG9zdCI6ICIiLAoicGF0aCI6ICIiLAoidGxzIjogIiIKfQo=</span><br><span class="line"></span><br><span class="line">免被墙..推荐使用JMS: https://getjms.com</span><br></pre></td></tr></table></figure>
+
+<p>这时候就可以打开自己电脑上的v2ray客户端（<a href="https://github.com/yanue/V2rayU/releases/download/2.2.0/V2rayU.dmg" target="_blank" rel="noopener">mac版下载V2rayU.dmg</a>）（<a href="https://github.com/2dust/v2rayN/releases/download/3.19/v2rayN-Core.zip" target="_blank" rel="noopener">windows版下载</a>）进行连接了。</p>
+<p>选择”服务器设置”导入刚才的那串 vmess:<br><img src="/images/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84v2ray/%E5%AF%BC%E5%85%A5v2ray.png" alt="导入v2ray"><br>之后在服务区列表选择自己搭建的节点，就OK啦！<br>来个4k视频体验一下速度把！（记得把浏览器上的其他科学上网插件都关掉哦）</p>
+<p><img src="/images/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84v2ray/%E6%B5%8B%E9%80%9F.png" alt="测速"></p>
+<p>v2ray可是可以配置Shadowsocks大家可以自己研究捣鼓一下哦！</p>
+<p>ps：不同节点速度差异还是挺大的，大家可以先去<a href="https://vultr.wiki/speed-test" target="_blank" rel="noopener">这里</a>下载一下100m的测速包，大致感受一下下载速度。</p>
 ]]></content>
       <categories>
         <category>科学上网</category>
