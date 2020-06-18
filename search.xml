@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>swift简介</title>
+    <url>/2020/06/13/swift-jian-jie/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/css/APlayer.min.css"><script src="/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/js/Meting.min.js"></script><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Swift是供iOS和OS X应用编程的新编程语言，基于C和Objective-C，而却没有C的一些兼容约束。Swift采用了安全的编程模式和添加现代的功能来是的编程更加简单、灵活和有趣。界面则基于广受人民群众爱戴的Cocoa和Cocoa Touch框架，展示了软件开发的新方向。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/06/apple-swift.jpg" alt="apple-swift"></p>
+<p>Swift已经存在了多年。Apple基于已有的编译器、调试器、框架作为其基础架构。通过ARC(Automatic Reference Counting，自动引用计数)来简化内存管理。我们的框架栈则一直基于Cocoa。Objective-C进化支持了块、collection literal和模块，允许现代语言的框架无需深入即可使用。感谢这些基础工作，才使得可以在Apple软件开发中引入新的编程语言。</p>
+<p>Objective-C开发者会感到Swift的似曾相识。Swift采用了Objective-C的命名参数和动态对象模型。提供了对Cocoa框架和mix-and-match的互操作性。基于这些基础，Swift引入了很多新功能和结合面向过程和面向对象的功能。</p>
+<p>Swift对新的程序员也是友好的。他是工业级品质的系统编程语言，却又像脚本语言一样的友好。他支持playground，允许程序员实验一段Swift代码功能并立即看到结果，而无需麻烦的构建和运行一个应用。</p>
+<p>Swift集成了现代编程语言思想，以及Apple工程文化的智慧。编译器是按照性能优化的，而语言是为开发优化的，无需互相折中。可以从”Hello, world”开始学起并过渡到整个系统。所有这些使得Swift成为Apple软件开发者创新的源泉。</p>
+<p>Swift是编写iOS和OSX应用的梦幻方式，并且会持续推进新功能的引入。我们迫不及待的看到你用他来做点什么。</p>
+<h3 id="Swift入门"><a href="#Swift入门" class="headerlink" title="Swift入门"></a>Swift入门</h3><p>一个新语言的学习应该从打印”Hello, world”开始。在Swift，就是一行:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">println(&quot;Hello, world&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>如果你写过C或Objective-C代码，这个语法看起来很熟悉，在Swift，这就是完整的程序了。你无需导入(import)一个单独的库供输入输出和字符串处理。全局范围的代码就是用于程序的入口，所以你无需编写一个 main() 函数。你也无需在每个语句后写分号。 这个入门会给出足够的信息教你完成一个编程任务。无需担心你还不理解一些东西，所有没解释清楚的，会在本书后续详细讲解。</p>
+<p><strong>注意：</strong> 作为最佳实践，可以将本章在Xcode的playground中打开。Playground允许你编辑代码并立即看到结果。</p>
+<h3 id="简单值"><a href="#简单值" class="headerlink" title="简单值"></a>简单值</h3><p>使用 let 来定义常量， var 定义变量。常量的值无需在编译时指定，但是至少要赋值一次。这意味着你可以使用常量来命名一个值，你发现只需一次确定，却用在多个地方。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myVariable &#x3D; 42</span><br><span class="line">myVariable &#x3D; 50</span><br><span class="line">let myConstant &#x3D; 42</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 这里的常量定义类似于函数式编程语言中的变量，一次赋值后就无法修改。多多使用有益健康。</p>
+<p>一个常量或变量必须与赋值时拥有相同的类型。因此你不用严格定义类型。提供一个值就可以创建常量或变量，并让编译器推断其类型。在上面例子中，编译其会推断myVariable是一个整数类型，因为其初始化值就是个整数。</p>
+<p><strong>注意：</strong> 类型与变量名绑定，属于静态类型语言。有助于静态优化。与Python、JavaScript等有所区别。 如果初始化值没有提供足够的信息(或没有初始化值)，可以在变量名后写类型，以冒号分隔。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let imlicitInteger &#x3D; 70</span><br><span class="line">let imlicitDouble &#x3D; 70.0</span><br><span class="line">let explicitDouble: Double &#x3D; 70</span><br></pre></td></tr></table></figure>
+
+<p>值永远不会隐含转换到其他类型。如果你需要转换一个值到不同类型，明确的构造一个所需类型的实例。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let label &#x3D; &quot;The width is &quot;</span><br><span class="line">let width &#x3D; 94</span><br><span class="line">let widthLabel &#x3D; label + String(width)</span><br></pre></td></tr></table></figure>
+
+<p>还有更简单的方法来在字符串中包含值：以小括号来写值，并用反斜线(“”)放在小括号之前。例如:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let apples &#x3D; 3</span><br><span class="line">let oranges &#x3D; 5     </span><br><span class="line">let appleSummary &#x3D; &quot;I have \(apples) apples.&quot;</span><br><span class="line">let fruitSummary &#x3D; &quot;I have \(apples + oranges) pieces of fruit.&quot;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个数组和字典使用方括号 “[]” ，访问其元素则是通过方括号中的索引或键。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var shoppingList &#x3D; [&quot;catfish&quot;, &quot;water&quot;, &quot;tulips&quot;, &quot;blue paint&quot;]</span><br><span class="line">shoppingList[1] &#x3D; &quot;bottle of water&quot;</span><br><span class="line"></span><br><span class="line">var occupations &#x3D; [</span><br><span class="line">   &quot;Malcolm&quot;: &quot;Captain&quot;,</span><br><span class="line">   &quot;Kaylee&quot;: &quot;Mechanic&quot;,</span><br><span class="line">]</span><br><span class="line">occupations[&quot;Jayne&quot;] &#x3D; &quot;Public Relations&quot;</span><br></pre></td></tr></table></figure>
+
+<p>要创建一个空的数组或字典，使用初始化语法:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let emptyArray &#x3D; String[]()</span><br><span class="line">let emptyDictionary &#x3D; Dictionary&lt;String, Float&gt;()</span><br></pre></td></tr></table></figure>
+
+<p>如果类型信息无法推断，你可以写空的数组为 “[]” 和空的字典为 “[:]”，例如你设置一个知道变量并传入参数到函数:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shoppingList &#x3D; []   &#x2F;&#x2F;去购物并买些东西</span><br></pre></td></tr></table></figure>
+
+<h3 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h3><p>使用 if 和 switch 作为条件控制。使用 for-in 、 for 、 while 、 do-while 作为循环。小括号不是必须的，但主体的大括号是必需的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let individualScores &#x3D; [75, 43, 103, 87, 12]</span><br><span class="line">var teamScore &#x3D; 0</span><br><span class="line">for score in individualScores &#123;</span><br><span class="line">    if score &gt; 50 &#123;</span><br><span class="line">        teamScores +&#x3D; 3</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        teamScores +&#x3D; 1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">teamScore</span><br></pre></td></tr></table></figure>
+
+<p>在 if 语句中，条件必须是布尔表达式，这意味着 if score { … } 是错误的，不能隐含的与0比较。 你可以一起使用 if 和 let 来防止值的丢失。这些值是可选的。可选值可以包含一个值或包含一个 nil 来指定值还不存在。写一个问号 “?” 在类型后表示值是可选的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var optionalString: String? &#x3D; &quot;Hello&quot;</span><br><span class="line">optionalString &#x3D;&#x3D; nil</span><br><span class="line"></span><br><span class="line">var optionalName: String? &#x3D; &quot;John Appleseed&quot;</span><br><span class="line">var greeting &#x3D; &quot;Hello!&quot;</span><br><span class="line">if let name &#x3D; optionalName &#123;</span><br><span class="line">    greeting &#x3D; &quot;Hello, \(name)&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>swift</category>
+      </categories>
+      <tags>
+        <tag>swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>（三）搭建自己的v2ray</title>
     <url>/2020/06/12/da-jian-zi-ji-de-v2ray/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/css/APlayer.min.css"><script src="/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/js/Meting.min.js"></script><hr>
